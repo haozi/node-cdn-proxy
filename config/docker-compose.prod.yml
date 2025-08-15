@@ -1,0 +1,31 @@
+name: node-cdn-proxy-prod
+services:
+  nginx:
+    image: nginx:1.29-alpine
+    volumes:
+      - ../config/nginx.prod.conf:/etc/nginx/conf.d/default.conf
+      - ../.cache/files:/var/www/files
+      - ../logs:/var/log/nginx
+    ports:
+      - 8788:80
+    depends_on:
+      - node
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+  node:
+    image: ghcr.io/haozi/node-cdn-proxy-node-server:latest
+    environment:
+      NODE_ENV: production
+      ORIGIN_BASE: https://long-source-cdn.haozi.me
+    volumes:
+      - ../.cache:/app/.cache
+    restart: always
+    command: ['pnpm', 'vite-node', 'src/server.ts']
+
+volumes:
+  node-cdn-proxy:
+
+networks:
+  my_network:
+    driver: bridge

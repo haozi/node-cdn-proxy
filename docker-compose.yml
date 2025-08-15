@@ -1,0 +1,16 @@
+name: node-cdn-proxy
+services:
+  nginx:
+    image: nginx:1.29-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./well-known.conf:/etc/nginx/well-known.conf:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./conf.d:/etc/nginx/conf.d:ro
+      - ./html:/usr/share/nginx/html:ro
+      - ./certs:/certs:ro
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'

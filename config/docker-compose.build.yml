@@ -1,0 +1,12 @@
+name: node-cdn-proxy-build
+services:
+  node:
+    image: ghcr.io/haozi/node-cdn-proxy-node-server:${TAG:-latest}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+
+volumes:
+  ai-trending:

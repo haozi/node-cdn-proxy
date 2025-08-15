@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "scripts": {
+    "build": "sh scripts/build.sh",
+    "dev": "ORIGIN_BASE=https://long-source-cdn.haozi.me vite-node src/server.ts",
+    "lint": "prettier . --write",
+    "start": "sh scripts/start.sh",
+    "stop": "sh scripts/stop.sh"
+  },
+  "dependencies": {
+    "undici": "^7.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "concurrently": "^9.2.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-lint-md": "^1.0.1",
+    "prettier-plugin-organize-imports": "^4.2.0",
+    "typescript": "^5.9.2",
+    "vite-node": "^3.2.4"
+  }
+}
