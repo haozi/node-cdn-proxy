@@ -6,5 +6,5 @@ cd "$(dirname "$0")" || exit 1
 cd ..
 
 docker compose -f ./config/docker-compose.prod.yml pull
-docker compose -f ./config/docker-compose.prod.yml up --remove-orphans -d
+docker compose -f ./config/docker-compose.prod.yml --env-file ./config/.env.prod up --remove-orphans -d
 docker image prune -f

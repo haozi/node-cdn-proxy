@@ -17,7 +17,7 @@ services:
     image: ghcr.io/haozi/node-cdn-proxy-node-server:latest
     environment:
       NODE_ENV: production
-      ORIGIN_BASE: https://long-source-cdn.haozi.me
+      ORIGIN_BASE: ${ORIGIN_BASE}
     volumes:
       - ../.cache:/app/.cache
     restart: always
